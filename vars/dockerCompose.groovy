@@ -1,3 +1,3 @@
 def call(){
-   sh "docker compose up -d --remove-orphans"
+   sh "docker compose down && docker compose up -d --remove-orphans"
 }

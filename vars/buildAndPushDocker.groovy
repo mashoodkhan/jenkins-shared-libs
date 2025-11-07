@@ -1,4 +1,4 @@
-def buildAndPushDocker(project, tag, dockerUser, contextDir){
+def call(project, tag, dockerUser, contextDir){
     sh "docker build -t ${dockerUser}/${project}:${tag} ${contextDir}"
     withCredentials([usernamePassword(credentialsId:"dockerhubcreds", 
                         usernameVariable:"DOCKER_USER", passwordVariable:"DOCKER_PASS")]) {

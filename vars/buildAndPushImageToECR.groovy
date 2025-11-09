@@ -1,5 +1,12 @@
 def call(project, tag, awsAccountId, awsRegion, contextDir) {
 
+    // Create a repo in ecr if not exists
+    sh """
+    aws ecr describe-repositories --repository-names ${project} \
+    || aws ecr create-repository --repository-name ${project} --region ${awsRegion}
+"""
+
+
     def ecrRepo = "${awsAccountId}.dkr.ecr.${awsRegion}.amazonaws.com/${project}"
 
     // Build

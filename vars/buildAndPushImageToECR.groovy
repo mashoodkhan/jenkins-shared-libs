@@ -5,10 +5,9 @@ def call(project, tag, awsAccountId, awsRegion, contextDir) {
     // Build
     sh "docker build -t ${project}:${tag} ${contextDir}"
 
-    // ✅ ALL AWS commands MUST be inside this block
     withAWS(credentials: 'aws-creds', region: awsRegion) {
 
-        // Auto-create repo if missing
+        // create repo if not exists
         sh """
             aws ecr describe-repositories --repository-names ${project} \
             || aws ecr create-repository --repository-name ${project} --region ${awsRegion}

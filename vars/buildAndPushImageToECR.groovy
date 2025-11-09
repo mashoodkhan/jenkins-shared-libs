@@ -10,6 +10,7 @@ def call(project, tag, awsAccountId, awsRegion, contextDir) {
     def ecrRepo = "${awsAccountId}.dkr.ecr.${awsRegion}.amazonaws.com/${project}"
 
     // Build
+    
     sh "docker build -t ${project}:${tag} ${contextDir}"
 
     // Login to AWS ECR

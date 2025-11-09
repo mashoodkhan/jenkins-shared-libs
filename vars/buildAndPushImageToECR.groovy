@@ -1,4 +1,4 @@
-def buildAndPushImageToECR(project, tag, awsAccountId, awsRegion, contextDir) {
+def call(project, tag, awsAccountId, awsRegion, contextDir) {
 
     def ecrRepo = "${awsAccountId}.dkr.ecr.${awsRegion}.amazonaws.com/${project}"
 
